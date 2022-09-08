@@ -14,6 +14,7 @@ module TsJson.Codec exposing
     , map
     , succeed, recursive, fail, lazy, value, build
     , tsType
+    , castedValue
     )
 
 {-| A `Codec a` contain a JSON `Decoder a` and the corresponding `a -> Value` encoder.
@@ -1379,6 +1380,14 @@ value =
     Codec
         { encoder = TsEncode.value
         , decoder = TsDecode.value
+        }
+
+
+castedValue : String -> Codec Decode.Value
+castedValue name =
+    Codec
+        { encoder = TsEncode.castedValue name
+        , decoder = TsDecode.castedValue name
         }
 
 

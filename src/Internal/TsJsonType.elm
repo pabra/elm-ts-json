@@ -21,5 +21,6 @@ type TsType
     | ObjectWithUniformValues TsType -- https://stackoverflow.com/a/13315210
     | Union ( TsType, List TsType )
     | Unknown
+    | CastedUnknown String
     | TsNever
     | Intersection (List TsType)

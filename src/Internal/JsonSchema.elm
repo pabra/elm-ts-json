@@ -83,6 +83,9 @@ toJsonSchemaHelp tsType =
         Unknown ->
             []
 
+        CastedUnknown _ ->
+            []
+
         Literal literalJson ->
             [ ( "const", literalJson ) ]
 

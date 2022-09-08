@@ -9,6 +9,7 @@ module TsJson.Encode exposing
     , value
     , encoder, tsType
     , runExample
+    , castedValue
     )
 
 {-| The `TsJson.Encode` module is what you use for
@@ -464,6 +465,11 @@ to build up a well-typed [`Encoder`](#Encoder).
 value : Encoder Encode.Value
 value =
     Encoder identity Unknown
+
+
+castedValue : String -> Encoder Encode.Value
+castedValue name =
+    Encoder identity (CastedUnknown name)
 
 
 {-| An [`Encoder`](#Encoder) represents turning an Elm input value into a JSON value that has a TypeScript type information.

@@ -16,6 +16,7 @@ module TsJson.Decode exposing
     , decoder, tsType
     , map3, map4, map5, map6, map7, map8
     , runExample
+    , castedValue
     )
 
 {-| The `TsJson.Decode` module is what you use for
@@ -661,6 +662,11 @@ Avoid using this when possible.
 value : Decoder Decode.Value
 value =
     Decoder Decode.value Unknown
+
+
+castedValue : String -> Decoder Decode.Value
+castedValue name =
+    Decoder Decode.value (CastedUnknown name)
 
 
 {-|

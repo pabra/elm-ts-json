@@ -67,6 +67,14 @@ suite =
                         , output = """["Hello","World"]"""
                         , typeDef = "JsonValue"
                         }
+        , test "Encode.castedValue escape hatch" <|
+            \() ->
+                TsEncode.castedValue "MyType | OtherTyper | \"Literal\""
+                    |> expectEncodes
+                        { input = Encode.list Encode.string [ "Hello", "World" ]
+                        , output = """["Hello","World"]"""
+                        , typeDef = "MyType | OtherTyper | \"Literal\""
+                        }
         , test "list" <|
             \() ->
                 TsEncode.list TsEncode.string

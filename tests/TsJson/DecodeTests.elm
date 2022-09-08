@@ -89,6 +89,22 @@ suite =
                         , output = Nothing
                         , typeDef = "string | null"
                         }
+        , test "value" <|
+            \() ->
+                value
+                    |> expectDecodes
+                        { input = """["Hello","World"]"""
+                        , output = Encode.list Encode.string [ "Hello", "World" ]
+                        , typeDef = "JsonValue"
+                        }
+        , test "castedValue" <|
+            \() ->
+                castedValue "MyType | OtherTyper | \"Literal\""
+                    |> expectDecodes
+                        { input = """["Hello","World"]"""
+                        , output = Encode.list Encode.string [ "Hello", "World" ]
+                        , typeDef = "MyType | OtherTyper | \"Literal\""
+                        }
         , test "map" <|
             \() ->
                 string

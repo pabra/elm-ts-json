@@ -31,6 +31,9 @@ toString tsType_ =
         Unknown ->
             "JsonValue"
 
+        CastedUnknown name ->
+            name
+
         -- compound types
         List listType ->
             parenthesizeToString listType ++ "[]"
